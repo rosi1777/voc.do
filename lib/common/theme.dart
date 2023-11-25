@@ -84,7 +84,7 @@ final bodyText2 = GoogleFonts.poppins(
 );
 
 final TextTheme myTextTheme = TextTheme(
-  headline1: GoogleFonts.montserrat(
+  displayLarge: GoogleFonts.montserrat(
     fontSize: 36,
     fontWeight: FontWeight.w500,
     color: milkWhite,

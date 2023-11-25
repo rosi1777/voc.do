@@ -44,15 +44,18 @@ abstract class RemoteDataSource {
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   static const String baseUrl = 'https://vocasia.my.id';
+  final http.Client client;
+
+  RemoteDataSourceImpl({required this.client});
 
   @override
-  Future<UserResponseModel> signUp(
+  Future<dynamic> signUp(
     String name,
     String email,
     String password,
     String confirmPassword,
   ) async {
-    final response = await http.post(Uri.parse('$baseUrl/register'), body: {
+    final response = await client.post(Uri.parse('$baseUrl/register'), body: {
       "name": name,
       "email": email,
       "password": password,
@@ -71,7 +74,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     String email,
     String password,
   ) async {
-    final response = await http.post(Uri.parse('$baseUrl/login'), body: {
+    final response = await client.post(Uri.parse('$baseUrl/login'), body: {
       "email": email,
       "password": password,
     });
@@ -85,7 +88,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<TaskResponseModel> getAllTask(String token) async {
-    final response = await http.get(
+    final response = await client.get(
       Uri.parse('$baseUrl/todolist'),
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
     );
@@ -99,7 +102,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<TaskResponseModel> getTodayTask(String token) async {
-    final response = await http.get(
+    final response = await client.get(
       Uri.parse('$baseUrl/todolist/today'),
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
     );
@@ -113,7 +116,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<TaskResponseModel> getOverdueTask(String token) async {
-    final response = await http.get(
+    final response = await client.get(
       Uri.parse('$baseUrl/todolist/overdue'),
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
     );
@@ -127,7 +130,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<TaskResponseModel> getDoneTask(String token) async {
-    final response = await http.get(
+    final response = await client.get(
       Uri.parse('$baseUrl/todolist/done'),
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
     );
@@ -141,7 +144,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<TaskResponseModel> getTodoTask(String token) async {
-    final response = await http.get(
+    final response = await client.get(
       Uri.parse('$baseUrl/todolist/todo'),
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
     );
@@ -155,7 +158,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<CounterResponseModel> getCounterTask(String token) async {
-    final response = await http.get(
+    final response = await client.get(
       Uri.parse('$baseUrl/todolist/stats'),
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
     );
@@ -169,7 +172,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<dynamic> markAsDoneTask(String token, String id) async {
-    final response = await http.put(
+    final response = await client.put(
       Uri.parse('$baseUrl/todolist/markasdone/$id'),
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
     );
@@ -183,7 +186,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<dynamic> deleteTask(String token, String id) async {
-    final response = await http.delete(
+    final response = await client.delete(
       Uri.parse('$baseUrl/todolist/delete/$id'),
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
     );
@@ -202,7 +205,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     String description,
     String time,
   ) async {
-    final response = await http.post(
+    final response = await client.post(
       Uri.parse('$baseUrl/todolist/create'),
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
       body: {'tittle': tittle, 'description': description, 'time': time},
@@ -226,7 +229,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     String description,
     String time,
   ) async {
-    final response = await http.put(
+    final response = await client.put(
       Uri.parse('$baseUrl/todolist/update/$id'),
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
       body: {'tittle': tittle, 'description': description, 'time': time},

@@ -1,0 +1,13 @@
+{
+    "status": 201,
+    "error": null,
+    "messages": {
+       "success": "Successfully authentication"
+    },
+    "data": {
+       "id": "4",
+       "name": "Ade Rizaldi",
+       "email": "ade@gmail.com"
+    },
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjQiLCJuYW1lIjoiQWRlIFJpemFsZGkiLCJlbWFpbCI6ImFkZUBnbWFpbC5jb20iLCJpYXQiOjE2NDY3OTAyMTksImV4cCI6MTY0Njg3NjYxOX0.JX_68UdpBJji0imUpXK3iLqEqyUXcNya-mSuAg9FShg"
+ }

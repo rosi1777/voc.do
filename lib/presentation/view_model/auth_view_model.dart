@@ -38,7 +38,7 @@ class AuthViewModel extends ChangeNotifier {
         res = false;
       },
       (successMessage) async {
-        _message = successMessage;
+        _message = '';
         _authState = RequestState.done;
         res = true;
       },

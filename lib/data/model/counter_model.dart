@@ -44,7 +44,7 @@ class CounterModel extends Equatable {
 
   @override
   List<Object?> get props => [
-        today,
+        todo,
         today,
         overdue,
         done,
